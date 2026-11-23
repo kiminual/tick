@@ -430,6 +430,68 @@ html.present #deck{display:block;position:fixed;inset:0;z-index:5;background:rad
 #intro-root .hero .float::after{content:'';position:absolute;left:11%;top:26%;width:40%;height:10%;border-radius:3px;background:rgba(255,255,255,.2);box-shadow:0 1.6em 0 rgba(255,255,255,.1);font-size:10px}
 footer .legal{display:block;margin-top:18px;padding-top:16px;border-top:1px solid var(--d-ln);font-size:12px;line-height:1.7;color:#6E6879}
 footer .legal p+p{margin-top:6px}
+/* 숫자와 단위 겹침 방지 */
+.big .n small,.dk-stats b small{letter-spacing:0;margin-left:.14em}
+
+/* ===== 모바일 최적화 (≤560px) ===== */
+.tdesc{display:none}
+@media (max-width:560px){
+ #intro-root section{padding:60px 0}
+ #intro-root h2{font-size:28px;line-height:1.22;margin-top:10px;word-break:keep-all}
+ #intro-root .lead{font-size:15px;line-height:1.65;margin-top:14px}
+ #intro-root p{word-break:keep-all}
+ /* 히어로 */
+ .hero{padding:96px 0 48px;min-height:auto}
+ .hero .scroll{display:none}
+ #intro-root .word{font-size:84px}
+ .hero h1{font-size:22px!important;line-height:1.4}
+ .facts{gap:6px;margin-top:26px}
+ .facts span{padding:10px 14px}
+ /* 숫자 3개: 숫자 왼쪽, 설명 오른쪽으로 촘촘하게 */
+ .big{margin-top:30px}
+ .big>div{display:grid;grid-template-columns:96px 1fr;column-gap:14px;align-items:start;padding:18px 0!important}
+ .big .n{font-size:44px;grid-row:span 3}
+ .big .t{margin-top:2px;font-size:14px}
+ .big .s{font-size:11px;margin-top:6px}
+ .big a.src{font-size:11px}
+ /* 가로로 넘겨 보는 카드 */
+ .scenes,.cr,.paths,.who{display:flex!important;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:30px -20px 0;padding:0 20px 6px;scroll-padding:0 20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .scenes::-webkit-scrollbar,.cr::-webkit-scrollbar,.paths::-webkit-scrollbar,.who::-webkit-scrollbar{display:none}
+ .scenes>*,.cr>*,.paths>*,.who>*{flex:0 0 84%;scroll-snap-align:start;padding:22px!important}
+ .swipe-hint{display:block;font-size:11px;color:var(--d-mu);margin-top:10px;letter-spacing:.02em}
+ /* 작동 방식 4개는 2×2 */
+ .pillars{grid-template-columns:1fr 1fr!important;gap:8px;margin-top:28px}
+ .pil{padding:16px 14px!important;border-radius:18px}
+ .pil h3{font-size:20px}
+ .pil p{font-size:12.5px;line-height:1.55}
+ .pil .q{font-size:11px}
+ /* 표·박스 여백 */
+ .vs{margin-top:28px}
+ .vs .r>div{padding:12px 14px!important;font-size:13px!important}
+ .dcol{padding:20px!important;border-radius:20px}
+ .di{padding:14px 0}
+ .root{padding:20px!important}
+ .root p{font-size:15.5px!important}
+ .calc{padding:18px!important}
+ .journey{padding:22px!important}
+ /* 화면 둘러보기: 버튼을 가로 칩으로 */
+ .tabs{display:flex!important;gap:6px;overflow-x:auto;margin:22px -20px 0;padding:0 20px 4px;max-width:none;scrollbar-width:none}
+ .tabs::-webkit-scrollbar{display:none}
+ .tabs button{flex:0 0 auto;padding:9px 14px;border-radius:99px;box-shadow:inset 0 0 0 1px var(--d-ln)}
+ .tabs button b{font-size:13px;white-space:nowrap}
+ .tabs button span{display:none!important}
+ .tdesc{display:block;font-size:13.5px;line-height:1.6;color:var(--d-mu);margin-top:12px;min-height:44px}
+ .tour{gap:20px!important}
+ /* FAQ·마지막 */
+ details summary{font-size:15px!important}
+ .final{padding-bottom:70px!important}
+}
+@media (min-width:561px){.swipe-hint{display:none}}
+@media (max-width:560px){
+ #intro-root .tour{display:block!important}
+ #intro-root .tour>*{min-width:0}
+ #intro-root .tour .pf{--w:min(280px,76vw);margin:22px auto 0!important}
+}
 
 </style>
 <style id="css-app">
@@ -725,7 +787,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
   <div class="in">
     <div class="kicker">추첨제 티케팅 플랫폼</div>
     <div class="word">TICK</div>
-    <h1>매크로보다 빠를 필요 없는 티케팅.<br><em>응원한 시간만큼</em> 유리해집니다.</h1>
+    <h1>매크로보다 빠를 필요 없는 티케팅<br><em>응원한 시간만큼</em> 유리해집니다</h1>
     <p>선착순 대신, 한 사람에 한 번씩 공평하게 추첨해요.</p>
     <div class="tkt" role="button" tabindex="0" data-enter aria-label="프로토타입 체험하기">
       <div class="main"><b>프로토타입 입장하기</b><span>절취선을 뜯으면 앱이 열려요</span></div>
@@ -743,7 +805,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
 <!-- 문제 -->
 <section id="problem"><div class="wrap">
   <div class="lbl rv">THE PROBLEM</div>
-  <h2 class="rv">빨리 누르는 쪽이 이기는 게임에선<br><em>사람이 봇을 이길 수 없습니다</em></h2>
+  <h2 class="rv">선착순 게임에서는<br><em>사람이 봇을 이길 수 없습니다</em></h2>
   <div class="big">
     <div class="rv"><div class="n" data-count="41">0<small>배</small></div><div class="t">프로스포츠 온라인 암표 의심 신고, 5년 새 증가</div><div class="s">2020년 6,237건 → 2025년 8월 259,334건<br><a class="src" href="https://view.asiae.co.kr/en/article/2025101414042586082" target="_blank" rel="noopener">출처: 문화체육관광부 자료(국회 제출) · 아시아경제 2025.10</a></div></div>
     <div class="rv" style="transition-delay:.08s"><div class="n" data-count="6">0<small>배</small></div><div class="t">매크로 암표 검거 인원, 직전 집중단속 대비</div><div class="s">2025년 하반기 26명 → 2026년 3~8월 157명<br><a class="src" href="https://biz.sbs.co.kr/amp/article/20000335741" target="_blank" rel="noopener">출처: 경찰청 국가수사본부 발표 · SBS Biz 2026.9</a></div></div>
@@ -753,7 +815,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
     <div class="scene rv"><div class="sn">장면 1</div><h3>예매 오픈 1초 전</h3><p>몇 년을 응원했어도 이 순간엔 소용이 없어요. 응원한 팬은 로봇과 경쟁해야 하죠.</p></div>
     <div class="scene rv" style="transition-delay:.06s"><div class="sn">장면 2</div><h3>매진 10분 뒤</h3><p>방금 놓친 그 자리가 웃돈이 붙어 중고 거래 사이트에 올라와요. 결국 팬이 웃돈을 얹어 다시 사죠.</p></div>
     <div class="scene rv" style="transition-delay:.12s"><div class="sn">장면 3</div><h3>공연 당일 입구</h3><p>입구에선 표만 확인해요. 몇 번을 보러 왔는지는 어디에도 남지 않아서, 다음 예매 때도 다시 0부터 시작이에요.</p></div>
-  </div>
+  </div><span class="swipe-hint">옆으로 넘겨 보세요 →</span>
   <div class="root rv"><span class="k">ROOT CAUSE</span><p>암표상을 아무리 잡아도, 먼저 누르는 사람이 이기는 한 매크로는 또 나와요. 빨리 누르기로는 사람이 기계를 못 이기니까요. 그래서 TICK은 단속을 늘리는 대신 <em>경쟁의 규칙</em>을 바꿨어요.</p></div>
 </div></section>
 
@@ -775,7 +837,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
 <!-- 기존 추첨제와의 차이 -->
 <section id="diff" class="tight"><div class="wrap">
   <div class="lbl rv">WHAT'S DIFFERENT</div>
-  <h2 class="rv">추첨제 자체가 특별한 건 아니에요.<br><em>TICK이 다른 건 그다음부터예요</em></h2>
+  <h2 class="rv">추첨제 자체가 특별한 건 아니에요<br><em>TICK이 다른 건 그다음부터예요</em></h2>
   <div class="diff">
     <div class="dcol old rv">
       <div class="dh">이미 있는 방식</div>
@@ -906,7 +968,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
     <div class="crs rv"><span class="no">1</span><h3>추첨 번호를 봉인해서 공개</h3><p>추첨에 쓸 무작위 번호를 미리 정해, 봉투에 넣고 봉인한 것처럼 잠가서 공개해요. 안은 아무도 볼 수 없지만, 나중에 번호를 바꾸면 봉인이 맞지 않아 바로 들통나요. 참여자 명단도 함께 봉인해요.</p></div>
     <div class="crs rv" style="transition-delay:.06s"><span class="no">2</span><h3>마감 후 봉인 해제 · 순서는 한 번만</h3><p>응모가 끝나면 봉인을 열어 번호를 공개하고, 그 번호로 전체 순서를 딱 한 번 정해요. 다시 돌릴 수 없어요.</p></div>
     <div class="crs rv" style="transition-delay:.12s"><span class="no">3</span><h3>누구나 검증</h3><p>공개된 번호로 내 순번을 직접 계산해 발표와 같은지 확인할 수 있어요.</p></div>
-  </div>
+  </div><span class="swipe-hint">옆으로 넘겨 보세요 →</span>
   <div class="two">
     <div class="box rv">
       <div class="bt">빈자리가 생기면</div>
@@ -930,7 +992,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
     <div class="path rv"><h3>동반자에게 양도</h3><p>예매 때 등록해 둔 동반자에게만 넘길 수 있어요. 입장은 받은 사람의 얼굴로 확인해요.</p></div>
     <div class="path rv" style="transition-delay:.06s"><h3>정가 100% 반환</h3><p>공연 3일 전까지 낸 금액 그대로 환불받아요. 그 자리는 대기 중인 팬에게 등급 순으로 자동 승계돼요.</p></div>
     <div class="path no rv" style="transition-delay:.12s"><h3>낯선 사람에게 판매</h3><p>안 돼요. 앱 안에서 웃돈 받고 넘길 방법이 없고, 입장은 예매한 본인과 미리 등록한 동반자 얼굴로만 돼요.</p></div>
-  </div>
+  </div><span class="swipe-hint">옆으로 넘겨 보세요 →</span>
   <div class="rules rv"><span>반환은 공연 3일 전까지</span><span>결제 기한을 넘기면 다음 순번에게</span><span>시즌 중 미결제 2번이면 다음 시즌 응모권 1장 감소</span></div>
 </div></section>
 
@@ -939,7 +1001,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
   <div>
     <div class="lbl rv">INSIDE THE APP</div>
     <h2 class="rv">화면으로<br><em>따라가 보는 TICK</em></h2>
-    <p class="lead rv">버튼을 누르면 옆 화면이 바뀌어요. 화면 안도 직접 눌러 볼 수 있어요.</p>
+    <p class="lead rv">버튼을 누르면 앱 화면이 바뀌어요. 화면 안도 직접 눌러 볼 수 있어요.</p>
     <div class="tabs rv" id="tourTabs">
       <button data-s="04"><b>얼굴 등록</b><span>얼굴은 기기 안에서만 대조하고 원본을 저장하지 않아요.</span></button>
       <button data-s="06"><b>공연 상세</b><span>응모 전에 내 등급, 응모권, 신규 팬 몫을 먼저 보여 줘요.</span></button>
@@ -949,7 +1011,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
       <button data-s="16"><b>입장권</b><span>입구에서 얼굴을 확인하면 3분 동안 QR이 켜지고, 15초마다 바뀌어요.</span></button>
       <button data-s="17b"><b>티켓 처리</b><span>동반자 양도와 정가 반환, 두 가지만 있어요.</span></button>
       <button data-s="H1"><b>주최 측 설정</b><span>회차마다 신규 팬 몫을 정하고, 좌석 배분을 미리 봐요. 가중치 상한 같은 규칙은 잠겨 있어요.</span></button>
-    </div>
+    </div><p class="tdesc" id="tdesc"></p><script>(function(){var t=document.querySelector(".tabs"),d=document.getElementById("tdesc");if(!t||!d)return;function u(){var b=t.querySelector("button.on")||t.querySelector("button");if(b){var sp=b.querySelector("span");d.textContent=sp?sp.textContent:""}}t.addEventListener("click",function(){setTimeout(u,0)});u();setTimeout(u,600)})();</script>
   </div>
   <div class="pf rv"><div class="pf-s"><iframe id="tourFrame" data-embed-screen="13" title="TICK 앱 화면 미리보기"></iframe></div></div>
 </div></section>
@@ -962,7 +1024,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
     <div class="wc rv"><div class="wt">팬</div><h3>기다린 시간이 기회가 돼요</h3><ul><li>새벽 광클 없이 기간 안에 응모</li><li>떨어져도 응모권과 대기 순번이 남음</li><li>웃돈 없이 정가로만</li></ul></div>
     <div class="wc rv" style="transition-delay:.06s"><div class="wt">주최 측</div><h3>팬덤을 지키면서 운영해요</h3><ul><li>신규 팬 몫 비율을 직접 설정</li><li>암표 대응·민원 비용 감소</li><li>얼굴 입장으로 실제 관람 기록(틱) 확보 · 얼굴 원본은 서버에 남기지 않음</li></ul></div>
     <div class="wc rv" style="transition-delay:.12s"><div class="wt">응원하는 대상</div><h3>팬이 낸 돈이 웃돈으로 새지 않아요</h3><ul><li>표값은 정가 그대로 팬에게서 공연으로</li><li>오래된 팬과 새 팬이 함께 들어옴</li><li>공연·경기 모두 같은 방식</li></ul></div>
-  </div>
+  </div><span class="swipe-hint">옆으로 넘겨 보세요 →</span>
 </div></section>
 
 <!-- FAQ -->
@@ -1005,11 +1067,11 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
   <div class="dk on">
     <div class="dk-k">추첨제 티케팅 플랫폼</div>
     <div class="dk-word">TICK</div>
-    <div class="dk-h">매크로보다 빠를 필요 없는 티케팅.<br><em>응원한 시간만큼</em> 유리해집니다.</div>
+    <div class="dk-h">매크로보다 빠를 필요 없는 티케팅<br><em>응원한 시간만큼</em> 유리해집니다</div>
   </div>
   <div class="dk">
     <div class="dk-k">THE PROBLEM</div>
-    <div class="dk-h2">빨리 누르는 쪽이 이기는 게임에선<br><em>사람이 봇을 이길 수 없습니다</em></div>
+    <div class="dk-h2">선착순 게임에서는<br><em>사람이 봇을 이길 수 없습니다</em></div>
     <div class="dk-stats">
       <div><b>41<small>배</small></b><span>프로스포츠 온라인 암표 의심 신고<br>2020 → 2025.8</span></div>
       <div><b>6<small>배</small></b><span>매크로 암표 검거 인원<br>직전 집중단속 대비</span></div>
@@ -1019,12 +1081,12 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
   </div>
   <div class="dk">
     <div class="dk-k">ROOT CAUSE</div>
-    <div class="dk-quote">범인은 암표상이 아니라<br><em>‘선착순’ 그 자체</em>입니다.</div>
+    <div class="dk-quote">범인은 암표상이 아니라<br><em>‘선착순’ 그 자체</em>입니다</div>
     <div class="dk-sub">빨리 누르기로는 사람이 기계를 못 이기니까요.<br>그래서 TICK은 단속을 늘리는 대신 경쟁의 규칙을 바꿨어요.</div>
   </div>
   <div class="dk">
     <div class="dk-k">WHAT'S DIFFERENT</div>
-    <div class="dk-h2">추첨제 자체가 특별한 건 아니에요.<br><em>TICK이 다른 건 그다음부터예요</em></div>
+    <div class="dk-h2">추첨제 자체가 특별한 건 아니에요<br><em>TICK이 다른 건 그다음부터예요</em></div>
     <div class="dk-five">
       <div><i>1</i><b>상한이 있는 가중치</b><span>최대 +10%</span></div>
       <div><i>2</i><b>따로 뽑는 신규 팬 몫</b><span>15~50%</span></div>
