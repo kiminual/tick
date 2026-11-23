@@ -493,6 +493,93 @@ footer .legal p+p{margin-top:6px}
  #intro-root .tour .pf{--w:min(280px,76vw);margin:22px auto 0!important}
 }
 
+/* ===== 배경: 메인(어둡게) 아래 밝은 소개가 깔리고 → 점점 어두워져 마지막 티켓에서 메인과 같은 색 ===== */
+#intro-root{--h1:8%;--f1:96%;background:linear-gradient(180deg,#14121A 0%,#14121A var(--h1),#302A45 var(--h1),#2D2741 calc(var(--h1) + 8%),#282338 30%,#221E30 48%,#1D1A28 64%,#18161F 80%,#14121A var(--f1),#14121A 100%)}
+#intro-root .hero{position:relative;z-index:3;background:#14121A;box-shadow:0 30px 70px -10px rgba(5,4,9,.75),0 2px 0 rgba(185,169,238,.06)}
+#intro-root .scene,#intro-root .pil,#intro-root .wc,#intro-root .dcol.old{background:rgba(255,255,255,.045)}
+
+/* ===== 가독성: 본문 대비·크기 올리기 ===== */
+#intro-root{--d-mu:#B9B3C8}
+#intro-root .lead{font-size:18px;line-height:1.75;max-width:680px}
+#intro-root .scene p,#intro-root .pil p,#intro-root .crs p,#intro-root .box p,#intro-root .path p,#intro-root .mh p,#intro-root .dots li,#intro-root .mode li,#intro-root .wc li{font-size:16.5px;line-height:1.75}
+#intro-root .faq details p{font-size:16.5px;line-height:1.8}
+#intro-root .di span,#intro-root .new li span{font-size:15.5px;line-height:1.7}
+#intro-root .journey span{font-size:14px}
+#intro-root .tiers span,#intro-root .out span{font-size:13px}
+#intro-root .big .t{font-size:17px}
+#intro-root .big .s{font-size:13px}
+#intro-root .tabs button span{font-size:14.5px}
+#intro-root .chip{font-size:13px}
+#intro-root .scene h3,#intro-root .crs h3,#intro-root .path h3,#intro-root .wc h3{letter-spacing:-.025em}
+@media (max-width:560px){
+ #intro-root .lead{font-size:16px}
+ #intro-root .scene p,#intro-root .crs p,#intro-root .box p,#intro-root .path p,#intro-root .mh p,#intro-root .dots li,#intro-root .mode li,#intro-root .wc li,#intro-root .faq details p{font-size:15.5px;line-height:1.7}
+ #intro-root .pil p{font-size:14px;line-height:1.6}
+ #intro-root .di span,#intro-root .new li span{font-size:14.5px}
+ #intro-root .big .t{font-size:15.5px}
+ #intro-root .big .s{font-size:12px}
+ #intro-root .tdesc{font-size:15px;color:var(--d-mu)}
+}
+
+/* ===== 구성 개편 (12 → 9 섹션) ===== */
+/* 원인: 큰 인용 문장 */
+#intro-root .root{display:block;background:none;padding:64px 0 0;margin-top:30px;border-top:1px solid var(--d-ln);border-radius:0}
+#intro-root .root .k{display:block;margin:0 0 14px}
+#intro-root .root p{font-size:clamp(22px,2.4vw,30px);line-height:1.5;font-weight:650;letter-spacing:-.03em;max-width:920px}
+/* 차별점: 기존 방식은 한 줄씩 */
+#intro-root .diff{grid-template-columns:.85fr 1.15fr}
+#intro-root .dcol.old .di b{font-size:16px}
+#intro-root .dcol.old .di span{font-size:14.5px;margin-top:4px}
+#intro-root .dcol.old a.src{margin-top:4px;font-size:11.5px}
+#intro-root .dcol.new li b{font-size:18px}
+/* 응원: 두 개념 + 탭 계산기 */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
+.du{border-radius:20px;padding:22px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--d-ln)}
+.du span{display:inline-block;font-size:12.5px;font-weight:700;color:var(--d-pri);background:rgba(185,169,238,.12);padding:4px 10px;border-radius:99px}
+.du b{display:block;font-size:21px;font-weight:720;letter-spacing:-.03em;margin-top:14px}
+.du p{font-size:15.5px;line-height:1.65;color:var(--d-mu);margin-top:6px}
+.calcw .ctab{display:flex;gap:4px;padding:4px;border-radius:14px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--d-ln);margin-bottom:12px}
+.calcw .ctab button{flex:1;font:inherit;font-size:14px;font-weight:650;color:var(--d-mu);padding:10px;border:0;border-radius:10px;background:none;cursor:pointer}
+.calcw .ctab button.on{background:rgba(185,169,238,.2);color:#fff}
+.calcw .calc[hidden]{display:none}
+/* 더 보기 */
+details.more{margin-top:18px}
+details.more>summary{list-style:none;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:650;color:var(--d-pri);cursor:pointer;padding:9px 16px;border-radius:99px;background:rgba(185,169,238,.1);box-shadow:inset 0 0 0 1px rgba(185,169,238,.25)}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::after{content:'+';font-size:16px;line-height:1}
+details.more[open]>summary::after{content:'−'}
+details.more[open]>summary{margin-bottom:18px}
+details.more .rv{opacity:1!important;transform:none!important}
+/* 응모부터 입장까지: 세 단계 */
+.stps{list-style:none;margin:48px 0 0;padding:0;display:grid;gap:14px}
+.stp{display:grid;grid-template-columns:220px 1fr;column-gap:32px;align-items:center;padding:28px;border-radius:26px;background:rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px var(--d-ln)}
+.stp .sv{height:140px;border-radius:18px;background:rgba(185,169,238,.08);display:grid;place-items:center}
+.stp .sv .tix{margin:0}
+.stp .sn2{font-size:13px;font-weight:700;color:var(--d-pri);letter-spacing:.04em}
+.stp h3{font-size:26px;font-weight:720;letter-spacing:-.035em;margin-top:8px}
+.stp .sb p{font-size:17px;line-height:1.7;color:var(--d-mu);margin-top:8px;max-width:640px}
+.stp details.more{grid-column:1/-1;margin-top:20px}
+.stp details.more>summary{margin-left:252px}
+.stp details.more[open]>summary{margin-bottom:22px}
+.pv{display:flex;flex-direction:column;gap:6px;align-items:center}
+.pv span{font-size:13px;font-weight:700;color:#fff;background:#65558F;padding:6px 12px;border-radius:99px}
+.pv span.x{background:none;color:var(--d-mu);text-decoration:line-through;box-shadow:inset 0 0 0 1px var(--d-ln)}
+@media (max-width:760px){
+ .duo{grid-template-columns:1fr}
+ .stp{grid-template-columns:1fr;row-gap:16px;padding:20px}
+ .stp .sv{height:110px}
+ .stp details.more>summary{margin-left:0}
+ #intro-root .diff{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+ #intro-root .root{padding-top:36px}
+ #intro-root .root p{font-size:19px!important;background:none}
+ .stp h3{font-size:21px}
+ .stp .sb p{font-size:15.5px}
+ .du b{font-size:19px}
+ .stp details .cr,.stp details .paths{margin-left:-20px;margin-right:-20px}
+}
+
 </style>
 <style id="css-app">
 
@@ -797,7 +884,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
 <nav class="snav" id="snav" aria-label="섹션 이동"><div class="wrap">
   <span class="brand">TICK</span>
   <div class="links">
-    <a href="#problem">문제</a><a href="#diff">차별점</a><a href="#how">작동 방식</a><a href="#bits">응모권</a><a href="#tier">등급</a><a href="#apply">응모</a><a href="#draw">추첨</a><a href="#manage">티켓 관리</a><a href="#tour">화면</a><a href="#faq">FAQ</a>
+    <a href="#problem">문제</a><a href="#diff">차별점</a><a href="#how">작동 방식</a><a href="#bits">응원</a><a href="#flow">응모·추첨</a><a href="#tour">화면</a><a href="#faq">FAQ</a>
   </div>
   <a class="go" href="?app=1" data-open-app>체험하기</a>
 </div></nav>
@@ -836,9 +923,9 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
     <div class="rv" style="transition-delay:.16s"><div class="n" data-count="41">0<small>%</small></div><div class="t">티켓 재판매 플랫폼(티켓베이) 거래 건수 중 상위 1% 판매자의 몫</div><div class="s">2024년 · 판매자 441명이 연 12만 건<br><a class="src" href="https://www.taxtimes.co.kr/news/article.html?no=272139" target="_blank" rel="noopener">출처: 국세청 자료(국회 제출) · 한국세정신문 2025.10</a></div></div>
   </div>
   <div class="scenes">
-    <div class="scene rv"><div class="sn">장면 1</div><h3>예매 오픈 1초 전</h3><p>몇 년을 응원했어도 이 순간엔 소용이 없어요. 응원한 팬은 로봇과 경쟁해야 하죠.</p></div>
-    <div class="scene rv" style="transition-delay:.06s"><div class="sn">장면 2</div><h3>매진 10분 뒤</h3><p>방금 놓친 그 자리가 웃돈이 붙어 중고 거래 사이트에 올라와요. 결국 팬이 웃돈을 얹어 다시 사죠.</p></div>
-    <div class="scene rv" style="transition-delay:.12s"><div class="sn">장면 3</div><h3>공연 당일 입구</h3><p>입구에선 표만 확인해요. 몇 번을 보러 왔는지는 어디에도 남지 않아서, 다음 예매 때도 다시 0부터 시작이에요.</p></div>
+    <div class="scene rv"><div class="sn">장면 1</div><h3>예매 오픈 1초 전</h3><p>몇 년을 응원했어도 이 순간엔 로봇과 똑같이 경쟁해야 해요.</p></div>
+    <div class="scene rv" style="transition-delay:.06s"><div class="sn">장면 2</div><h3>매진 10분 뒤</h3><p>방금 놓친 그 자리가 웃돈이 붙어 다시 올라와요.</p></div>
+    <div class="scene rv" style="transition-delay:.12s"><div class="sn">장면 3</div><h3>공연 당일 입구</h3><p>입구에선 표만 봐요. 몇 번을 왔는지는 어디에도 남지 않아요.</p></div>
   </div><span class="swipe-hint">옆으로 넘겨 보세요 →</span>
   <div class="root rv"><span class="k">ROOT CAUSE</span><p>암표상을 아무리 잡아도, 먼저 누르는 사람이 이기는 한 매크로는 또 나와요. 빨리 누르기로는 사람이 기계를 못 이기니까요. 그래서 TICK은 단속을 늘리는 대신 <em>경쟁의 규칙</em>을 바꿨어요.</p></div>
 </div></section>
@@ -865,9 +952,9 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
   <div class="diff">
     <div class="dcol old rv">
       <div class="dh">이미 있는 방식</div>
-      <div class="di"><b>선착순 대신 추첨</b><span>일본 예매처의 선행 추첨, K팝 해외 팬클럽 추첨처럼 신청 기간 안에 응모하고 뽑아요. 다만 응원한 기간은 반영되지 않고, 반영되는 건 주로 유료 회원 여부예요.</span><a class="src" href="https://t.pia.jp/en/guide/prereserve.jsp" target="_blank" rel="noopener">예: 일본 예매처 선행 추첨 안내</a></div>
-      <div class="di"><b>등록 후 무작위 선정</b><span>해외 대형 투어(2025–26)는 사전 등록자 중 무작위로 구매 코드를 줘서 봇을 걸러요. 그래도 당첨된 표가 재판매 사이트에 올라오는 건 막지 못했어요.</span><a class="src" href="https://www.hypebot.com/hypebot/2025/09/radiohead-tickets-listed-on-secondary-sites-despite-bands-efforts.html" target="_blank" rel="noopener">예: 등록제 투어 표의 재판매 보도</a></div>
-      <div class="di"><b>팬 활동 기반 우선권</b><span>팬 활동 데이터로 우선권이나 가중 추첨을 주는 해외 플랫폼도 생겼어요. 다만 가중치 상한이나 새 팬 몫 같은 장치는 공개된 설명에 없어요.</span><a class="src" href="https://www.ticketnews.com/2026/02/openstage-reshape-ticket-presales-fan-access-system/" target="_blank" rel="noopener">예: 팬 데이터 기반 사전 판매 플랫폼</a></div>
+      <div class="di"><b>선착순 대신 추첨</b><span>일본 선행 추첨, K팝 해외 팬클럽 추첨 · 응원한 기간은 반영되지 않아요</span><a class="src" href="https://t.pia.jp/en/guide/prereserve.jsp" target="_blank" rel="noopener">출처</a></div>
+      <div class="di"><b>등록 후 무작위 선정</b><span>해외 대형 투어의 구매 코드 추첨 · 당첨 표의 재판매는 못 막았어요</span><a class="src" href="https://www.hypebot.com/hypebot/2025/09/radiohead-tickets-listed-on-secondary-sites-despite-bands-efforts.html" target="_blank" rel="noopener">출처</a></div>
+      <div class="di"><b>팬 활동 기반 우선권</b><span>팬 데이터로 가중 추첨 · 공개된 설명엔 가중치 상한도, 새 팬 몫도 없어요</span><a class="src" href="https://www.ticketnews.com/2026/02/openstage-reshape-ticket-presales-fan-access-system/" target="_blank" rel="noopener">출처</a></div>
     </div>
     <div class="dcol new rv" style="transition-delay:.06s">
       <div class="dh">그래서 TICK이 더한 다섯 가지</div>
@@ -879,11 +966,6 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
         <li><b>얼굴로 켜지는 입장 QR</b><span>계정을 빌리거나 표만 넘겨서는 입장 불가</span></li>
       </ol>
     </div>
-  </div>
-  <div class="ko rv">
-    <div class="koh">국내에서 추첨제가 반대에 부딪힌 두 가지 이유, 그리고 TICK의 답 <a class="src" href="https://isplus.com/article/view/isp202506010076" target="_blank" rel="noopener">관련 보도: 2025년 추첨제 공약 철회</a></div>
-    <div class="kor"><div class="q">“당첨되면 결국 되팔 것이다”</div><div class="a">앱 안에는 되팔 길이 없어요. 동반자 양도와 정가 반환만 있고, 입장은 본인 얼굴로 켜지는 QR로만 해요.</div></div>
-    <div class="kor"><div class="q">“좌석이 무작위면 원하는 자리에 못 앉는다”</div><div class="a">원하는 구역 순서를 정해 응모하고, 1순위 구역부터 배정을 시도해요.</div></div>
   </div>
 </div></section>
 
@@ -913,19 +995,24 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
   </div>
 </div></section>
 
-<!-- 비트 · 응모권 -->
 <section id="bits" class="tight"><div class="wrap split">
   <div>
-    <div class="lbl rv">BITS → ENTRIES</div>
-    <h2 class="rv">활동할수록 늘지만,<br><em>끝없이 늘지는 않아요</em></h2>
-    <p class="lead rv">응모권 1장은 본인 확인만 하면 누구나 받아요. 2장은 100비트, 3장은 300비트. 다음 장은 이전의 두 배 활동이 필요하고, 3장이 최대입니다.</p>
-    <ul class="dots rv">
-      <li>팬 챌린지에는 순위가 없어요. 기간 안에만 하면 똑같이 쌓여요.</li>
-      <li>300비트를 넘긴 비트의 <b>2%</b>는 시즌이 끝나면 틱으로 바뀌어요. 이벤트 기간엔 3%.</li>
-      <li>비트로 넘어오는 틱은 <b>200틱까지</b>만. 관람 없이 오를 수 있는 건 펄스 입구까지예요.</li>
-    </ul>
+    <div class="lbl rv">BITS · TICKS</div>
+    <h2 class="rv">응원할수록 유리하지만,<br><em>끝없이는 아니에요</em></h2>
+    <div class="duo rv">
+      <div class="du"><span>비트 → 응모권</span><b>이번 시즌 활동</b><p>순위 없는 팬 챌린지로 모아요. 응모권은 최대 3장까지예요.</p></div>
+      <div class="du"><span>틱 → 당첨 가중치</span><b>쌓인 관람 기록</b><p>얼굴로 입장할 때마다 쌓여요. 가중치는 최대 +10%까지예요.</p></div>
+    </div>
+    <details class="more rv"><summary>자세한 규칙 보기</summary><ul class="dots">
+      <li>응모권 1장은 본인 확인만 하면 누구나, 2장은 100비트, 3장은 300비트예요.</li>
+      <li>300비트를 넘긴 비트의 <b>2%</b>는 시즌이 끝나면 틱으로 바뀌어요(이벤트 기간 3%). 이렇게 넘어오는 틱은 <b>200틱까지</b>만이에요.</li>
+      <li>틱은 응원하는 대상마다 따로, 영구히 쌓여요. 스파크 0–199 · 펄스 200–449 · 비컨 450–600.</li>
+      <li>가중치는 응모권 장수에 곱해져요. 예: 2장 × 1.08 = 2.16</li>
+    </ul></details>
   </div>
-  <div class="calc rv" id="bitCalc">
+  <div class="calcw rv">
+    <div class="ctab" role="tablist"><button class="on" data-c="bitCalc" type="button">응모권 계산</button><button data-c="tierCalc" type="button">등급 계산</button></div>
+    <div class="calc" id="bitCalc">
     <div class="ch">직접 움직여 보기</div>
     <label for="bitR" class="cl">이번 시즌 비트 <b id="bitV">120</b></label>
     <input type="range" id="bitR" min="0" max="600" step="10" value="120">
@@ -936,12 +1023,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
     </div>
     <div class="out"><div><span>쓸 수 있는 응모권</span><b id="bitT">2장</b></div><div><span id="bitNL">다음 장까지</span><b id="bitN">180비트</b></div></div>
     <div class="note" id="bitX">300비트를 넘기면 초과분의 2%가 시즌 후 틱으로 바뀌어요.</div>
-  </div>
-</div></section>
-
-<!-- 등급 -->
-<section id="tier"><div class="wrap split rev">
-  <div class="calc rv" id="tierCalc">
+  </div><div class="calc" id="tierCalc" hidden>
     <div class="ch">직접 움직여 보기</div>
     <label for="tickR" class="cl">응원하는 대상의 틱 <b id="tickV">480</b></label>
     <input type="range" id="tickR" min="0" max="600" step="10" value="480">
@@ -953,23 +1035,18 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
     <div class="out"><div><span>지금 등급</span><b id="tierN">비컨</b></div><div><span>당첨 가중치</span><b id="tierW">+8%</b></div></div>
     <div class="formula">가중치 = 1 + 0.10 × 틱 ÷ 600 <span id="tierM">= ×1.08</span></div>
   </div>
-  <div>
-    <div class="lbl rv">TICK · TIER</div>
-    <h2 class="rv">오래 응원한 팬은<br><em>조금만 더 유리하게</em></h2>
-    <p class="lead rv">틱은 얼굴로 입장한 관람 기록이에요. 응원하는 대상마다 따로, 영구히 쌓입니다. 등급이 높을수록 당첨 가중치가 오르지만 최대 <b>+10%</b>로 상한을 둬서, 처음 온 팬과의 격차가 벌어지지 않게 했어요.</p>
-    <ul class="dots rv">
-      <li>가중치는 응모권 장수에 곱해져요. 예: 2장 × 1.08 = 2.16</li>
-      <li>미당첨 후 빈자리는 등급 높은 순(비컨 → 펄스 → 스파크)으로 넘어가요.</li>
-      <li>같은 등급 안에서는 추첨 순서를 따라요.</li>
-    </ul>
   </div>
 </div></section>
+<script>(function(){var w=document.querySelector('#bits .ctab');if(!w)return;w.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;w.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b);document.getElementById(x.dataset.c).hidden=(x!==b)})})})();</script>
 
-<!-- 응모 방식 -->
-<section id="apply" class="tight"><div class="wrap">
-  <div class="lbl rv">HOW TO ENTER</div>
-  <h2 class="rv">응모권을<br><em>몰거나, 나누거나</em></h2>
-  <div class="modes">
+
+<section id="flow"><div class="wrap">
+  <div class="lbl rv">FROM ENTRY TO GATE</div>
+  <h2 class="rv">응모부터 입장까지,<br><em>세 단계면 충분해요</em></h2>
+  <ol class="stps">
+    <li class="stp rv"><div class="sv"><div class="tix"><i class="u"></i><i class="u"></i><i></i></div></div>
+      <div class="sb"><div class="sn2">01 · 응모</div><h3>응모권을 몰거나, 나누거나</h3><p>한 자리에 최대 2장을 몰거나, 동반자와 연석으로 응모해요. 떨어지면 응모권은 그대로 돌아와요.</p></div>
+      <details class="more"><summary>자세히 보기</summary><div class="modes">
     <div class="mode rv">
       <div class="mh"><span class="mi">A</span><div><h3>한 자리 집중</h3><p>한 자리에 응모권을 몰아 확률을 높여요.</p></div></div>
       <div class="tix"><i class="u"></i><i class="u"></i><i></i></div>
@@ -982,13 +1059,10 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
     </div>
   </div>
   <div class="rules rv"><span>한 회차 한 응모</span><span>1인 1당첨</span><span>미당첨이면 응모권 반환</span><span>원하는 구역 순서 지정</span></div>
-</div></section>
-
-<!-- 추첨 -->
-<section id="draw"><div class="wrap">
-  <div class="lbl rv">FAIR DRAW</div>
-  <h2 class="rv">추첨 결과,<br><em>내 손으로 확인해요</em></h2>
-  <div class="cr">
+</details></li>
+    <li class="stp rv"><div class="sv"><svg viewBox="0 0 120 84" width="120" height="84" aria-hidden="true"><rect x="6" y="14" width="108" height="64" rx="8" fill="rgba(185,169,238,.16)" stroke="rgba(185,169,238,.55)" stroke-width="2"/><path d="M8 18 60 52 112 18" fill="none" stroke="rgba(185,169,238,.55)" stroke-width="2"/><circle cx="60" cy="52" r="15" fill="#65558F" stroke="#B9A9EE" stroke-width="2"/><rect x="54" y="50" width="12" height="9" rx="2" fill="#EDEAF3"/><path d="M56.5 50v-3a3.5 3.5 0 0 1 7 0v3" fill="none" stroke="#EDEAF3" stroke-width="2"/></svg></div>
+      <div class="sb"><div class="sn2">02 · 추첨</div><h3>추첨 결과, 내 손으로 확인해요</h3><p>추첨 번호를 미리 봉인해 공개하고, 마감 후 열어서 순서를 딱 한 번 정해요. 누구나 다시 계산해 볼 수 있어요.</p></div>
+      <details class="more"><summary>자세히 보기</summary><div class="cr">
     <div class="crs rv"><span class="no">1</span><h3>추첨 번호를 봉인해서 공개</h3><p>추첨에 쓸 무작위 번호를 미리 정해, 봉투에 넣고 봉인한 것처럼 잠가서 공개해요. 안은 아무도 볼 수 없지만, 나중에 번호를 바꾸면 봉인이 맞지 않아 바로 들통나요. 참여자 명단도 함께 봉인해요.</p></div>
     <div class="crs rv" style="transition-delay:.06s"><span class="no">2</span><h3>마감 후 봉인 해제 · 순서는 한 번만</h3><p>응모가 끝나면 봉인을 열어 번호를 공개하고, 그 번호로 전체 순서를 딱 한 번 정해요. 다시 돌릴 수 없어요.</p></div>
     <div class="crs rv" style="transition-delay:.12s"><span class="no">3</span><h3>누구나 검증</h3><p>공개된 번호로 내 순번을 직접 계산해 발표와 같은지 확인할 수 있어요.</p></div>
@@ -1006,19 +1080,22 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
       <p>신규 팬은 <b style="color:var(--d-tx)">그 대상의 관람 기록(틱)이 아직 없는 팬</b>이에요. 다른 대상의 오래된 팬이어도 이 대상이 처음이면 신규 팬이에요. 신규 대상은 최대 50%, 팬덤이 자리 잡은 대상은 15~20%를 따로 뽑아요. 주최 측이 정하고, 팬덤 규모에 따라 자동으로 바뀌어요.</p>
     </div>
   </div>
-</div></section>
-
-<!-- 티켓 관리 -->
-<section id="manage" class="tight"><div class="wrap">
-  <div class="lbl rv">AFTER THE DRAW</div>
-  <h2 class="rv">못 가게 되면,<br><em>길은 두 가지뿐</em></h2>
-  <div class="paths">
+</details></li>
+    <li class="stp rv"><div class="sv"><div class="pv"><span>동반자 양도</span><span>정가 100% 반환</span><span class="x">웃돈 판매</span></div></div>
+      <div class="sb"><div class="sn2">03 · 못 가게 되면</div><h3>길은 두 가지뿐이에요</h3><p>등록한 동반자에게 넘기거나 정가 그대로 반환해요. 반환한 자리는 대기 팬에게 등급 순으로 넘어가요.</p></div>
+      <details class="more"><summary>자세히 보기</summary><div class="paths">
     <div class="path rv"><h3>동반자에게 양도</h3><p>예매 때 등록해 둔 동반자에게만 넘길 수 있어요. 입장은 받은 사람의 얼굴로 확인해요.</p></div>
     <div class="path rv" style="transition-delay:.06s"><h3>정가 100% 반환</h3><p>공연 3일 전까지 낸 금액 그대로 환불받아요. 그 자리는 대기 중인 팬에게 등급 순으로 자동 승계돼요.</p></div>
     <div class="path no rv" style="transition-delay:.12s"><h3>낯선 사람에게 판매</h3><p>안 돼요. 앱 안에서 웃돈 받고 넘길 방법이 없고, 입장은 예매한 본인과 미리 등록한 동반자 얼굴로만 돼요.</p></div>
   </div><span class="swipe-hint">옆으로 넘겨 보세요 →</span>
   <div class="rules rv"><span>반환은 공연 3일 전까지</span><span>결제 기한을 넘기면 다음 순번에게</span><span>시즌 중 미결제 2번이면 다음 시즌 응모권 1장 감소</span></div>
+</details></li>
+  </ol>
 </div></section>
+
+
+
+
 
 <!-- 화면 둘러보기 -->
 <section id="tour"><div class="wrap tour">
@@ -1045,9 +1122,9 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
   <div class="lbl rv">FOR EVERYONE</div>
   <h2 class="rv">그래서<br><em>누가 좋아지나요</em></h2>
   <div class="who">
-    <div class="wc rv"><div class="wt">팬</div><h3>기다린 시간이 기회가 돼요</h3><ul><li>새벽 광클 없이 기간 안에 응모</li><li>떨어져도 응모권과 대기 순번이 남음</li><li>웃돈 없이 정가로만</li></ul></div>
-    <div class="wc rv" style="transition-delay:.06s"><div class="wt">주최 측</div><h3>팬덤을 지키면서 운영해요</h3><ul><li>신규 팬 몫 비율을 직접 설정</li><li>암표 대응·민원 비용 감소</li><li>얼굴 입장으로 실제 관람 기록(틱) 확보 · 얼굴 원본은 서버에 남기지 않음</li></ul></div>
-    <div class="wc rv" style="transition-delay:.12s"><div class="wt">응원하는 대상</div><h3>팬이 낸 돈이 웃돈으로 새지 않아요</h3><ul><li>표값은 정가 그대로 팬에게서 공연으로</li><li>오래된 팬과 새 팬이 함께 들어옴</li><li>공연·경기 모두 같은 방식</li></ul></div>
+    <div class="wc rv"><div class="wt">팬</div><h3>기다린 시간이 기회가 돼요</h3><ul><li>새벽 광클 없이 기간 안에 응모</li><li>떨어져도 응모권과 대기 순번이 남음</li></ul></div>
+    <div class="wc rv" style="transition-delay:.06s"><div class="wt">주최 측</div><h3>팬덤을 지키면서 운영해요</h3><ul><li>신규 팬 몫 비율을 직접 설정</li><li>암표 대응·민원 비용 감소</li></ul></div>
+    <div class="wc rv" style="transition-delay:.12s"><div class="wt">응원하는 대상</div><h3>팬이 낸 돈이 웃돈으로 새지 않아요</h3><ul><li>표값은 정가 그대로 팬에게서 공연으로</li><li>오래된 팬과 새 팬이 함께 들어옴</li></ul></div>
   </div><span class="swipe-hint">옆으로 넘겨 보세요 →</span>
 </div></section>
 
@@ -1058,6 +1135,8 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
     <h2 class="rv">자주 묻는<br><em>질문</em></h2>
   </div>
   <div class="faq rv">
+    <details><summary>당첨되면 결국 되팔지 않을까요?</summary><p>앱 안에는 되팔 길이 없어요. 동반자 양도와 정가 반환만 있고, 입장은 본인 얼굴로 켜지는 QR로만 해요. 국내에서 추첨제가 반대에 부딪힌 가장 큰 이유였어요. <a class="src" href="https://isplus.com/article/view/isp202506010076" target="_blank" rel="noopener">관련 보도: 2025년 추첨제 공약 철회</a></p></details>
+    <details><summary>좌석이 무작위면 원하는 자리에 못 앉지 않나요?</summary><p>원하는 구역 순서를 정해 응모하고, 1순위 구역부터 배정을 시도해요.</p></details>
     <details><summary>매크로로 응모하면 어떻게 되나요?</summary><p>속도가 결과에 영향을 주지 않아서 매크로로 얻을 게 없어요. 계정도 통신사 인증으로 한 사람에 하나뿐이라, 계정을 여러 개 만들어 확률을 올릴 수도 없어요.</p></details>
     <details><summary>오래된 팬만 유리한 구조 아닌가요?</summary><p>등급 가중치는 최대 +10%로 묶여 있고, 신규 팬 몫은 따로 추첨해요. 이제 막 팬이 된 사람도 충분히 당첨될 수 있어요.</p></details>
     <details><summary>공연장 입구에서는 얼굴을 어떻게 확인하나요?</summary><p>입구 앞에서 내 폰으로 얼굴을 확인하면 3분 동안만 입장 QR이 켜져요. 게이트는 QR만 찍어요. QR은 15초마다 바뀌어서 캡처로는 들어갈 수 없어요.</p></details>
@@ -1105,7 +1184,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
   </div>
   <div class="dk">
     <div class="dk-k">ROOT CAUSE</div>
-    <div class="dk-quote">범인은 암표상이 아니라<br><em>‘선착순’ 그 자체</em>입니다</div>
+    <div class="dk-quote">진짜 문제는<br><em>‘선착순’</em>이라는 규칙</div>
     <div class="dk-sub">빨리 누르기로는 사람이 기계를 못 이기니까요.<br>그래서 TICK은 단속을 늘리는 대신 경쟁의 규칙을 바꿨어요.</div>
   </div>
   <div class="dk">
@@ -1161,6 +1240,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
     <a class="dk-btn" id="dkScroll" href="?">스크롤로 보기</a>
   </div>
 </div>
+<script>(function(){function gv(){var r=document.getElementById("intro-root"),he=r&&r.querySelector(".hero"),fi=r&&r.querySelector(".final");if(!r||!he||!fi)return;var H=r.scrollHeight;if(!H)return;r.style.setProperty("--h1",(he.offsetHeight/H*100).toFixed(2)+"%");r.style.setProperty("--f1",((fi.offsetTop+fi.offsetHeight*.6)/H*100).toFixed(2)+"%")}addEventListener("load",gv);addEventListener("resize",gv);setTimeout(gv,300);setTimeout(gv,1500);document.addEventListener("toggle",function(){setTimeout(gv,50)},true)})();</script>
 </div>
 </template>
 
