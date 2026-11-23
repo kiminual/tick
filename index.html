@@ -739,6 +739,30 @@ body:not(.full) .g-row a:hover,body:not(.full) .g-row button:hover,body:not(.ful
 body.arrive-anim .device{animation:devin .7s .15s cubic-bezier(.2,.8,.2,1) both}
 @keyframes devin{from{transform:translateY(30px) scale(.96);opacity:0}}
 
+/* ===== 휴대폰: 안내 탭 + 아래에서 올라오는 안내 창 ===== */
+#gfab,#gscrim,#gtip,#gclose{display:none}
+body.mobile .stage.enter .guide{animation:none}
+body.mobile #gfab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;position:fixed;right:0;top:56%;z-index:120;width:34px;height:70px;padding:0;border:0;border-radius:14px 0 0 14px;background:rgba(101,85,143,.92);color:#fff;font:inherit;font-size:11px;font-weight:700;letter-spacing:.02em;box-shadow:-4px 6px 18px rgba(52,48,61,.28);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);cursor:pointer}
+body.mobile #gfab svg{width:16px;height:16px}
+body.mobile #gfab span{writing-mode:vertical-rl;line-height:1}
+body.mobile.gopen #gfab{opacity:0;pointer-events:none}
+body.mobile #gscrim{display:block;position:fixed;inset:0;z-index:125;background:rgba(20,18,26,.45);opacity:0;pointer-events:none;transition:opacity .25s}
+body.mobile.gopen #gscrim{opacity:1;pointer-events:auto}
+body.mobile .guide{display:flex!important;position:fixed;left:0;right:0;bottom:0;width:auto;height:auto;max-height:84vh;max-height:84dvh;z-index:130;background:#fff;color:var(--tx);border-radius:22px 22px 0 0;padding:8px 16px calc(14px + env(safe-area-inset-bottom,0px));gap:10px;box-shadow:0 -12px 40px rgba(20,18,26,.28);transform:translateY(105%);transition:transform .34s cubic-bezier(.2,.8,.2,1);visibility:hidden}
+body.mobile.gopen .guide{transform:none;visibility:visible}
+body.mobile .guide::before{content:'';align-self:center;width:40px;height:4px;border-radius:2px;background:#D6D2DD;flex:none;margin-bottom:2px}
+body.mobile .g-br{display:flex;align-items:center;gap:8px}
+body.mobile #gclose{display:block;margin-left:auto;border:0;background:var(--sec);color:var(--tx2);border-radius:99px;padding:7px 12px;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+body.mobile .g-list{flex:1 1 auto;max-height:36vh;max-height:36dvh}
+body.mobile .g-list button{padding:9px 8px;font-size:14px}
+body.mobile .g-note{padding:14px 16px}
+body.mobile .g-card{background:#F4F2F7}
+body.mobile .g-row a,body.mobile .g-row button{background:#F4F2F7;color:#4A4553;padding:12px;font-size:13px;border-radius:12px}
+body.mobile .g-row button.on{background:#EDE6FF;color:#65558F}
+body.mobile #gtip{display:block;position:fixed;right:44px;top:calc(56% + 8px);z-index:121;max-width:210px;background:#34303D;color:#fff;font-size:12.5px;line-height:1.5;padding:10px 12px;border-radius:12px;box-shadow:0 8px 24px rgba(20,18,26,.3);opacity:0;transform:translateX(8px);transition:opacity .3s,transform .3s;pointer-events:none}
+body.mobile #gtip::after{content:'';position:absolute;right:-6px;top:18px;border:6px solid transparent;border-right:0;border-left-color:#34303D}
+body.mobile #gtip.on{opacity:1;transform:none;pointer-events:auto}
+
 /* 소개 페이지에서 넘어올 때: 어둠 속에서 폰이 비스듬히 누운 채 떠올라 정면으로 바로 섬 */
 .stage{position:relative}
 .stage.enter{perspective:1500px;perspective-origin:50% 40%}
@@ -1184,8 +1208,11 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
 </defs></svg>
 <div id="arrive"><b>TICK</b></div>
 <div class="stage">
+  <button id="gfab" type="button" aria-label="화면 목록과 설명 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span>안내</span></button>
+  <div id="gscrim"></div>
+  <div id="gtip">화면 목록과 설명은 여기서 볼 수 있어요</div>
   <aside class="guide">
-    <div class="g-br"><b>TICK</b><span>인터랙티브 프로토타입</span></div>
+    <div class="g-br"><b>TICK</b><span>인터랙티브 프로토타입</span><button id="gclose" type="button">닫기</button></div>
     <div class="g-card g-note" id="gnote"></div>
     <div class="g-card g-list" id="glist"></div>
     <div class="g-row"><button id="ghot">누를 수 있는 곳 보기</button><button id="greset">처음부터</button></div>
@@ -1857,6 +1884,22 @@ addEventListener('message',e=>{const d=e.data;if(!d||d.type!=='tick-go'||!docume
  if(d.screen==='10'){S.mode=d.mode||'focus';S.n=2;S.compList=['minji_p'];S.comps=1}stack=['05'];cur=d.screen;render('fade')});
 window.TICKarrive=function(f){const ar=document.getElementById('arrive');ar.style.display='';ar.className='';void ar.offsetWidth;ar.className='arrive-'+f;document.body.classList.add('arrive-anim');setTimeout(()=>{ar.style.display='none';ar.className='';document.body.classList.remove('arrive-anim')},1100)};
 if(FROM)window.TICKarrive(FROM);
+
+/* ---------- 휴대폰 안내 창 ---------- */
+(function(){const B=document.body,tip=document.getElementById('gtip');
+ const open=()=>{B.classList.add('gopen');tip.classList.remove('on');try{localStorage.setItem('tick-gtip','1')}catch(e){}};
+ const close=()=>B.classList.remove('gopen');
+ document.getElementById('gfab').addEventListener('click',open);
+ document.getElementById('gscrim').addEventListener('click',close);
+ document.getElementById('gclose').addEventListener('click',close);
+ tip.addEventListener('click',open);
+ document.getElementById('glist').addEventListener('click',e=>{if(e.target.closest('[data-j]'))close()});
+ document.getElementById('ghot').addEventListener('click',()=>{if(B.classList.contains('mobile'))setTimeout(close,150)});
+ document.getElementById('greset').addEventListener('click',close);
+ document.getElementById('gback').addEventListener('click',close);
+ let seen=false;try{seen=localStorage.getItem('tick-gtip')==='1'}catch(e){}
+ if(!seen&&!EMBED){setTimeout(()=>{if(B.classList.contains('mobile')&&!B.classList.contains('gopen')){tip.classList.add('on');setTimeout(()=>tip.classList.remove('on'),5000)}},1800)}
+})();
 
 </script>
 
