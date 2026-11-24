@@ -9,6 +9,13 @@
 <meta property="og:description" content="선착순 대신 추첨으로 티켓을 배정하는 서비스 디자인 콘셉트">
 <meta name="theme-color" content="#14121A">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%2365558F%22/%3E%3Ctext x=%2232%22 y=%2243%22 font-family=%22Arial%22 font-weight=%22900%22 font-size=%2230%22 fill=%22white%22 text-anchor=%22middle%22%3ET%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tickdraw.vercel.app/">
+<meta property="og:image" content="https://tickdraw.vercel.app/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tickdraw.vercel.app/og.png">
+<style id="font-local">@font-face{font-family:'Pretendard Variable';src:url('fonts/PretendardVariable.woff2') format('woff2-variations'),url('fonts/PretendardVariable.woff2') format('woff2');font-weight:45 920;font-style:normal;font-display:swap}</style>
 <link id="font" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <!--
   TICK · 시안 B (다크 몰입형) — 한 파일 버전
@@ -579,6 +586,20 @@ details.more .rv{opacity:1!important;transform:none!important}
  .du b{font-size:19px}
  .stp details .cr,.stp details .paths{margin-left:-20px;margin-right:-20px}
 }
+/* ===== 남은 숙제 · 지표 ===== */
+.nx{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:44px}
+.nxc{border-radius:26px;padding:30px;background:rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px var(--d-ln)}
+.nh{font-size:13px;font-weight:700;color:var(--d-pri);letter-spacing:.04em}
+.nq{padding:20px 0;border-bottom:1px solid var(--d-ln)}.nq:last-child{border-bottom:0;padding-bottom:0}
+.nq b{display:block;font-size:20px;font-weight:720;letter-spacing:-.03em}
+.nq p{font-size:16px;line-height:1.7;color:var(--d-mu);margin-top:6px}
+.nq span{display:inline-block;margin-top:10px;font-size:13.5px;font-weight:600;color:#D9D0FF;background:rgba(185,169,238,.12);padding:6px 12px;border-radius:10px;line-height:1.5}
+.nm{list-style:none;margin:16px 0 0;padding:0;counter-reset:n}
+.nm li{counter-increment:n;display:grid;grid-template-columns:34px 1fr;padding:14px 0;border-bottom:1px solid var(--d-ln)}.nm li:last-child{border-bottom:0}
+.nm li::before{content:counter(n);grid-row:span 2;width:24px;height:24px;border-radius:50%;background:#65558F;color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;margin-top:2px}
+.nm b{font-size:17px;font-weight:700}
+.nm span{font-size:14.5px;color:var(--d-mu);line-height:1.6;margin-top:3px}
+@media (max-width:760px){.nx{grid-template-columns:1fr}.nxc{padding:22px}.nq b{font-size:18px}.nq p{font-size:15px}}
 
 </style>
 <style id="css-app">
@@ -1128,6 +1149,24 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
   </div><span class="swipe-hint">옆으로 넘겨 보세요 →</span>
 </div></section>
 
+<section id="next" class="tight"><div class="wrap">
+  <div class="lbl rv">WHAT'S NEXT</div>
+  <h2 class="rv">아직 남은 숙제와,<br><em>잘 되고 있는지 보는 법</em></h2>
+  <div class="nx">
+    <div class="nxc rv"><div class="nh">아직 풀어야 할 문제</div>
+      <div class="nq"><b>동반자 자리를 몰래 팔 수 있어요</b><p>당첨 전에 "동반자로 등록해 줄게" 하고 돈을 받으면, 산 사람이 자기 얼굴로 정상 입장해요.</p><span>검토 중: 동반자는 관람 기록이 있는 사이로 제한, 시즌당 동반자 수 제한</span></div>
+      <div class="nq"><b>운영자는 추첨 번호를 미리 알아요</b><p>봉인으로 결과를 바꾸는 건 들통나지만, 미리 아는 운영자가 마감 전에 가짜 계정을 끼워 넣을 수는 있어요.</p><span>검토 중: 마감 뒤에 공개되는 외부 값으로 추첨 번호 정하기, 마감 즉시 명단 잠그기</span></div>
+    </div>
+    <div class="nxc rv"><div class="nh">잘 되고 있다는 신호</div>
+      <ol class="nm">
+        <li><b>재판매 게시 수</b><span>공연 한 회당 웃돈 재판매 글이 얼마나 줄었나</span></li>
+        <li><b>신규 팬 당첨 비율</b><span>관람 기록이 없는 팬이 실제로 얼마나 당첨됐나</span></li>
+        <li><b>반환 좌석 승계율</b><span>반환된 자리 중 대기 팬에게 넘어가 채워진 비율</span></li>
+        <li><b>빈 좌석 비율</b><span>공연 당일 비어 있는 자리가 얼마나 남았나</span></li>
+      </ol>
+    </div>
+  </div>
+</div></section>
 <!-- FAQ -->
 <section id="faq"><div class="wrap faqw">
   <div>
@@ -1163,6 +1202,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
 <div class="wrap legal"><p>이 사이트는 학생 개인이 만든 비영리 서비스 디자인 포트폴리오입니다. 실제 티켓 예매·결제·추첨·환불은 이루어지지 않으며, 이름·연락처·얼굴 등 어떤 개인정보도 수집하거나 서버로 전송하지 않습니다.</p>
 <p>화면에 나오는 공연·아티스트·좌석·가격·이용자·장소·통신사는 모두 설명을 위해 지어낸 가상의 예시이며, 실존하는 인물·단체·상품과 관계가 없습니다. ‘TICK’은 과제용 가칭으로, 같거나 비슷한 이름의 실제 서비스·상표와 관련이 없습니다.</p>
 <p>인용한 통계와 국내외 사례는 문제와 차별점을 설명하기 위해 공개 보도와 공공 자료를 출처와 함께 요약한 것이며, 원문의 저작권은 각 출처에 있습니다. 언급된 기업·플랫폼은 이 프로젝트와 제휴·후원 관계가 없고, 이 사이트는 이들을 평가하거나 보증하지 않습니다.</p>
+<p>제작 도구 : Claude(기획·사이트 구현·문구 보조) · Figma(기획 및 앱 디자인) · GitHub, Vercel(배포)</p>
 <p>글꼴: Pretendard (SIL Open Font License 1.1) · © 2026 TICK 포트폴리오 제작자. 디자인과 글을 허락 없이 복제하거나 상업적으로 이용할 수 없습니다.</p></div></footer>
 
 <!-- ======================= 전시용 넘겨보기 (?present=1) ======================= -->
@@ -1194,7 +1234,7 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
       <div><i>1</i><b>상한이 있는 가중치</b><span>최대 +10%</span></div>
       <div><i>2</i><b>따로 뽑는 신규 팬 몫</b><span>15~50%</span></div>
       <div><i>3</i><b>누구나 검증하는 추첨</b><span>추첨 번호 미리 봉인</span></div>
-      <div><i>4</i><b>정가 반환 → 대기 승계</b><span>재판매 경로 없음</span></div>
+      <div><i>4</i><b>정가 반환 → 대기 승계</b><span>웃돈 재판매 불가</span></div>
       <div><i>5</i><b>얼굴로 켜지는 입장 QR</b><span>대리 입장 불가</span></div>
     </div>
   </div>
@@ -1206,6 +1246,15 @@ document.getElementById(m==='app'?'css-intro':'css-app').disabled=true})();
       <div><span>이번 시즌 얼마나?</span><b>비트</b><p>활동으로 응모권 1~3장</p></div>
       <div><span>얼마나 오래?</span><b>등급</b><p>관람 기록으로 가중 최대 +10%</p></div>
       <div><span>누구를?</span><b>추첨</b><p>검증 가능한 추첨 · 신규 팬 몫</p></div>
+    </div>
+  </div>
+  <div class="dk">
+    <div class="dk-k">FROM ENTRY TO GATE</div>
+    <div class="dk-h2">응모부터 입장까지,<br><em>세 단계면 충분해요</em></div>
+    <div class="dk-four" style="grid-template-columns:repeat(3,1fr)">
+      <div><span>01 · 응모</span><b>몰거나, 나누거나</b><p>한 자리에 최대 2장 또는 동반자와 연석 · 떨어지면 응모권 반환</p></div>
+      <div><span>02 · 추첨</span><b>내 손으로 확인</b><p>추첨 번호를 미리 봉인 · 마감 후 순서는 딱 한 번</p></div>
+      <div><span>03 · 못 가게 되면</span><b>길은 두 가지</b><p>동반자 양도 또는 정가 반환 · 자리는 대기 팬에게</p></div>
     </div>
   </div>
   <div class="dk dk-phone">
@@ -1993,7 +2042,7 @@ var cssIntro=document.getElementById('css-intro'),cssApp=document.getElementById
 function embedDoc(screen){
   return '<!DOCTYPE html><html lang="ko" data-mode="app"><head><meta charset="utf-8"><meta name="viewport" content="width=375">'
    +'<script>window.TICK_CFG={app:true,embed:true,screen:"'+screen+'"}<\/script>'
-   +document.getElementById('font').outerHTML
+   +document.getElementById('font-local').outerHTML+document.getElementById('font').outerHTML
    +'<style>'+document.getElementById('css-base').textContent+'</style>'
    +'<style>'+cssApp.textContent+'</style></head><body>'
    +document.getElementById('tpl-app').innerHTML
